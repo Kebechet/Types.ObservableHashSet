@@ -1,1 +1,2 @@
 # Types.ObservableHashSet
+This package contains type `ObservableHashSet<T>` that is extracted from [Entity Framework repo](https://github.com/dotnet/efcore/blob/main/src/EFCore/ChangeTracking/ObservableHashSet.cs)
