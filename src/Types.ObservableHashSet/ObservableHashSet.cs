@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Specialized;
 using System.ComponentModel;
 
-namespace ObservableHashSet;
+namespace Types.ObservableHashSet;
 
 /// <summary>
 ///     <para>
@@ -19,7 +19,7 @@ namespace ObservableHashSet;
 /// </summary>
 /// <typeparam name="T">The type of elements in the hash set.</typeparam>
 public class ObservableHashSet<T>
-    : ISet<T>, IReadOnlyCollection<T>, INotifyCollectionChanged, INotifyPropertyChanged, INotifyPropertyChanging
+    : ISet<T>, IReadOnlyCollection<T>, INotifyCollectionChanged, INotifyPropertyChanged, INotifyPropertyChanging, ICollection<T>, IReadOnlySet<T>
 {
     private HashSet<T> _set;
 
