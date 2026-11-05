@@ -47,6 +47,31 @@ public class ObservableHashSet<T>
 
     /// <summary>
     ///     Initializes a new instance of the <see cref="ObservableHashSet{T}" /> class
+    ///     that is empty, has reserved space for <paramref name="capacity" /> elements and
+    ///     uses the default equality comparer for the set type.
+    /// </summary>
+    /// <param name="capacity">The initial size of the hash set.</param>
+    public ObservableHashSet(int capacity)
+        : this(capacity, EqualityComparer<T>.Default)
+    {
+    }
+
+    /// <summary>
+    ///     Initializes a new instance of the <see cref="ObservableHashSet{T}" /> class
+    ///     that is empty, has reserved space for <paramref name="capacity" /> elements and
+    ///     uses the specified equality comparer for the set type.
+    /// </summary>
+    /// <param name="capacity">The initial size of the hash set.</param>
+    /// <param name="comparer">
+    ///     The <see cref="IEqualityComparer{T}" /> implementation to use when
+    ///     comparing values in the set, or null to use the default <see cref="IEqualityComparer{T}" />
+    ///     implementation for the set type.
+    /// </param>
+    public ObservableHashSet(int capacity, IEqualityComparer<T> comparer)
+        => _set = new HashSet<T>(capacity, comparer);
+
+    /// <summary>
+    ///     Initializes a new instance of the <see cref="ObservableHashSet{T}" /> class
     ///     that uses the default equality comparer for the set type, contains elements copied
     ///     from the specified collection, and has sufficient capacity to accommodate the
     ///     number of elements copied.
@@ -459,6 +484,15 @@ public class ObservableHashSet<T>
     /// </summary>
     public virtual void TrimExcess()
         => _set.TrimExcess();
+
+    /// <summary>
+    ///     Ensures that the hash set can hold up to the specified number of elements without any further
+    ///     expansion of its backing storage.
+    /// </summary>
+    /// <param name="capacity">The number of elements the hash set must be able to hold.</param>
+    /// <returns>The new capacity of the hash set.</returns>
+    public virtual int EnsureCapacity(int capacity)
+        => _set.EnsureCapacity(capacity);
 
     /// <summary>
     ///     Raises the <see cref="PropertyChanged" /> event.
