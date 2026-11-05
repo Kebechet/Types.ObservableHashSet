@@ -4,6 +4,7 @@
 using System.Collections;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Types.ObservableHashSet;
 
@@ -119,6 +120,20 @@ public class ObservableHashSet<T>
     /// </returns>
     public virtual bool Contains(T item)
         => _set.Contains(item);
+
+    /// <summary>
+    ///     Searches the hash set for a given value and returns the equal value it finds, if any.
+    /// </summary>
+    /// <param name="equalValue">The value to search for.</param>
+    /// <param name="actualValue">
+    ///     The value from the hash set that the search found, or the default value of
+    ///     <typeparamref name="T" /> when the search yielded no match.
+    /// </param>
+    /// <returns>
+    ///     <see langword="true" /> if the search found a value; otherwise, <see langword="false" />.
+    /// </returns>
+    public virtual bool TryGetValue(T equalValue, [MaybeNullWhen(false)] out T actualValue)
+        => _set.TryGetValue(equalValue, out actualValue);
 
     /// <summary>
     ///     Copies the elements of the hash set to an array, starting at the specified array index.
